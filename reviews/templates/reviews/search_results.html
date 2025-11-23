@@ -1,0 +1,118 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Search Reviews - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 2rem;">
+    <h1 style="text-align: center; margin-bottom: 2rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        Search & Filter Reviews
+    </h1>
+    
+    <!-- Search Form -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <form method="GET">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label">Search</label>
+                    <input type="text" name="search" class="form-input" placeholder="Search reviews..." value="{{ search_query }}">
+                </div>
+                
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label">Faculty</label>
+                    <select name="faculty" class="form-select">
+                        <option value="">All Faculty</option>
+                        {% for fac in faculties %}
+                        <option value="{{ fac.id }}" {% if faculty_filter == fac.id|stringformat:"s" %}selected{% endif %}>
+                            {{ fac.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label">Department</label>
+                    <select name="department" class="form-select">
+                        <option value="">All Departments</option>
+                        {% for dept in departments %}
+                        <option value="{{ dept.id }}" {% if department_filter == dept.id|stringformat:"s" %}selected{% endif %}>
+                            {{ dept.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group" style="margin: 0;">
+                    <label class="form-label">Tag</label>
+                    <select name="tag" class="form-select">
+                        <option value="">All Tags</option>
+                        {% for tag in available_tags %}
+                        <option value="{{ tag }}" {% if tag_filter == tag %}selected{% endif %}>{{ tag }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="margin-top: 1rem; width: 100%;">
+                Apply Filters
+            </button>
+        </form>
+    </div>
+    
+    <!-- Results -->
+    <h2 style="margin-bottom: 1.5rem; color: var(--text-primary);">
+        Search Results ({{ reviews|length }} review{{ reviews|length|pluralize }})
+    </h2>
+    
+    <div class="review-list">
+        {% for review in reviews %}
+        <div class="review-item fade-in">
+            <div class="review-header">
+                <div>
+                    <a href="{% url 'faculty_detail' review.faculty.id %}" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                        {{ review.faculty.name }}
+                    </a>
+                    <span style="color: var(--text-muted); margin: 0 0.5rem;">•</span>
+                    <span class="review-author">
+                        {% if review.is_anonymous %}
+                        🕶️ Anonymous
+                        {% else %}
+                        {{ review.student.name }}
+                        {% endif %}
+                    </span>
+                    <span class="review-date" style="margin-left: 1rem;">
+                        {{ review.created_at|date:"M d, Y" }}
+                    </span>
+                </div>
+                <div class="review-points">{{ review.points }}/10</div>
+            </div>
+            
+            {% if review.question %}
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; font-style: italic;">
+                Q: {{ review.question.text }}
+            </p>
+            {% endif %}
+            
+            <p class="review-description">{{ review.description|truncatewords:50 }}</p>
+            
+            {% if review.tags %}
+            <div class="tags">
+                {% for tag in review.tags %}
+                <span class="tag tag-{{ tag|lower|cut:' ' }}">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <a href="{% url 'faculty_detail' review.faculty.id %}" class="btn btn-secondary" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">
+                View Full Review
+            </a>
+        </div>
+        {% empty %}
+        <div style="text-align: center; padding: 3rem; background: var(--glass-bg); border-radius: var(--radius-md);">
+            <p style="color: var(--text-muted); font-size: 1.1rem;">
+                No reviews found matching your criteria.
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

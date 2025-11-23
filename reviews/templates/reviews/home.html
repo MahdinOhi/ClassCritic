@@ -1,0 +1,82 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Home - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="hero fade-in">
+        <h1>ClassCritic</h1>
+        <p>Discover faculty reviews from real students. Make informed decisions about your courses.</p>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <form method="GET" action="{% url 'home' %}">
+                <input 
+                    type="text" 
+                    name="search" 
+                    class="search-input" 
+                    placeholder="Search faculty by name, email, or course..."
+                    value="{{ search_query }}"
+                >
+            </form>
+        </div>
+        
+        <!-- Department Filter -->
+        <div style="text-align: center; margin-top: 1rem;">
+            <form method="GET" action="{% url 'home' %}" style="display: inline-block;">
+                <select name="department" class="form-select" onchange="this.form.submit()" style="width: auto; display: inline-block;">
+                    <option value="">All Departments</option>
+                    {% for dept in departments %}
+                    <option value="{{ dept.id }}" {% if department_filter == dept.id|stringformat:"s" %}selected{% endif %}>
+                        {{ dept.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <!-- Faculty Grid -->
+    <div class="faculty-grid">
+        {% for item in faculty_list %}
+        <div class="card faculty-card fade-in">
+            <h3 class="faculty-name">{{ item.faculty.name }}</h3>
+            <p class="faculty-designation">{{ item.faculty.designation|default:"Faculty Member" }}</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                {{ item.faculty.department.name }}
+            </p>
+            
+            <div style="margin-top: 1rem;">
+                <strong style="color: var(--text-secondary);">Courses:</strong>
+                <div style="margin-top: 0.5rem;">
+                    {% for course in item.faculty.courses.all %}
+                    <span class="tag">{{ course.code }}</span>
+                    {% empty %}
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">No courses assigned</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="rating">
+                <span class="rating-value">{{ item.avg_rating }}</span>
+                <span class="rating-max">/ 10</span>
+                <span style="color: var(--text-muted); margin-left: auto;">
+                    {{ item.total_reviews }} review{{ item.total_reviews|pluralize }}
+                </span>
+            </div>
+            
+            <a href="{% url 'faculty_detail' item.faculty.id %}" class="btn btn-primary" style="margin-top: 1rem; width: 100%; text-align: center;">
+                View Reviews
+            </a>
+        </div>
+        {% empty %}
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+            <p style="color: var(--text-muted); font-size: 1.2rem;">
+                No faculty members found. {% if search_query %}Try a different search.{% endif %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

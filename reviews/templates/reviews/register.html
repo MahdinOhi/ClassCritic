@@ -1,0 +1,44 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Register - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 500px; margin-top: 3rem;">
+    <div class="card fade-in">
+        <h2 style="text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Student Registration
+        </h2>
+        
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+            Register with your @std.ewubd.edu email to submit reviews
+        </p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label class="form-label">Full Name</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.name.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Student Email (@std.ewubd.edu)</label>
+                {{ form.email }}
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">
+                    Only @std.ewubd.edu email addresses are accepted
+                </p>
+                {% if form.email.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.email.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Send OTP
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

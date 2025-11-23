@@ -1,0 +1,44 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Verify OTP - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 500px; margin-top: 3rem;">
+    <div class="card fade-in">
+        <h2 style="text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Verify OTP
+        </h2>
+        
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+            We've sent a 6-digit OTP to<br>
+            <strong style="color: var(--text-primary);">{{ student_email }}</strong>
+        </p>
+        
+        <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid var(--primary); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.5rem; text-align: center;">
+            <p style="color: var(--primary); font-size: 0.9rem;">
+                ⏱️ OTP expires in 5 minutes
+            </p>
+        </div>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label class="form-label">Enter OTP</label>
+                {{ form.otp }}
+                {% if form.otp.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.otp.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Verify & Login
+            </button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted);">
+            Didn't receive the OTP? <a href="{% url 'register' %}" style="color: var(--primary);">Request new OTP</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
