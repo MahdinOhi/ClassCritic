@@ -9,30 +9,37 @@
         <h1>ClassCritic</h1>
         <p>Discover faculty reviews from real students. Make informed decisions about your courses.</p>
         
-        <!-- Search Bar -->
+        <!-- Search and Filter Form -->
         <div class="search-bar">
-            <form method="GET" action="{% url 'home' %}">
-                <input 
-                    type="text" 
-                    name="search" 
-                    class="search-input" 
-                    placeholder="Search faculty by name, email, or course..."
-                    value="{{ search_query }}"
-                >
-            </form>
-        </div>
-        
-        <!-- Department Filter -->
-        <div style="text-align: center; margin-top: 1rem;">
-            <form method="GET" action="{% url 'home' %}" style="display: inline-block;">
-                <select name="department" class="form-select" onchange="this.form.submit()" style="width: auto; display: inline-block;">
-                    <option value="">All Departments</option>
-                    {% for dept in departments %}
-                    <option value="{{ dept.id }}" {% if department_filter == dept.id|stringformat:"s" %}selected{% endif %}>
-                        {{ dept.name }}
-                    </option>
-                    {% endfor %}
-                </select>
+            <form method="GET" action="{% url 'home' %}" id="searchForm">
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center;">
+                    <input 
+                        type="text" 
+                        name="search" 
+                        class="search-input" 
+                        placeholder="Search faculty by name, email, or course..."
+                        value="{{ search_query }}"
+                        style="flex: 1; min-width: 300px;"
+                    >
+                    <select 
+                        name="department" 
+                        class="form-select" 
+                        onchange="this.form.submit()" 
+                        style="width: auto; min-width: 200px;"
+                    >
+                        <option value="">All Departments</option>
+                        {% for dept in departments %}
+                        <option value="{{ dept.id }}" {% if department_filter == dept.id|stringformat:"s" %}selected{% endif %}>
+                            {{ dept.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% if search_query or department_filter %}
+                    <a href="{% url 'home' %}" class="btn btn-secondary" style="white-space: nowrap;">
+                        Clear Filters
+                    </a>
+                    {% endif %}
+                </div>
             </form>
         </div>
     </div>

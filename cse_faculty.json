@@ -1,0 +1,499 @@
+[
+  {
+    "name": "Dr. Md. Mozammel Huq Azad Khan",
+    "email": null,
+    "designation": "Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Shamim H Ripon",
+    "email": null,
+    "designation": "Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Md. Nawab Yousuf Ali",
+    "email": null,
+    "designation": "Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Ahmed Wasif Reza",
+    "email": null,
+    "designation": "Dean, Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Taskeed Jabid",
+    "email": null,
+    "designation": "Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Maheen Islam",
+    "email": null,
+    "designation": "Chairperson, Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Mohammad Rezwanul Huq",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Anisur Rahman",
+    "email": null,
+    "designation": "Associate Professor, Proctor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Anup Kumar Paul",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Sarwar Jahan",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Mohammad Salah Uddin",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Md Sawkat Ali",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Raihan Ul Islam",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Md Mostofa Kamal Rasel",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Mohammad Rifat Ahmmad Rashid",
+    "email": null,
+    "designation": "Associate Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Mohammad Manzurul Islam",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Md. Hasanul Ferdaus",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Hasan Mahmood Aminul Islam",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Md. Atiqur Rahman",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Md. Tauhid Bin Iqbal",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Tania Sultana",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Farhana Huq",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Nafis Sadeq",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Hosney Jahan",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Dr. Zubaer Ibna Mannan",
+    "email": null,
+    "designation": "Assistant Professor",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Sarwar Kamal",
+    "email": null,
+    "designation": "Senior Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Rashedul Amin Tuhin",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Surajit Das Barman",
+    "email": null,
+    "designation": "Senior Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Amit Kumar Das",
+    "email": null,
+    "designation": "Senior Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Tanni Mittra",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Khan Mohammad Habibullah",
+    "email": null,
+    "designation": "Senior Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "M. Saddam Hossain Khan",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Musharrat Khan",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Mahamudul Hasan",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Mohsin Uddin",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Jesan Ahammed Ovi",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md Al-Imran",
+    "email": null,
+    "designation": "Senior Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Sadia Nowrin",
+    "email": null,
+    "designation": "Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Kowshika Sarker",
+    "email": null,
+    "designation": "Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Muhit Islam Emon",
+    "email": null,
+    "designation": "Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Yeasir Rayhan",
+    "email": null,
+    "designation": "Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Mostofa Rafid Uddin",
+    "email": null,
+    "designation": "Lecturer (On Study Leave)",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Mahir Ashhab",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Sadika Islam Sneha",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Khalid Mahbub Khan",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Amit Mandal",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Nishat Tasnim Niloy",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Mahmuda Rawnak Jahan",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Ahmed Abdal Shafi Rasel",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Sadia Nur Amin",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Fouzia Risdin",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Arman Hossain",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Puja Chakraborty",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Khairum Islam",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Nishat Tasnim",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Ashraful Haider Chowdhury",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Asif Khan Rifat",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md Sabbir Hossain",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Yasin Sazid",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Rabea Khatun",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Shatabdi Roy Moon",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Sanzana Karim Lora",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Mahmudul Islam Rakib",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "K. M. Safin Kamal",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Md. Adnan Morshed",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Asraf Ullah Rahat",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Antu Chowdhury",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Tahsin Tariq Banna",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Muhammed Yaseen Morshed Adib",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Nahid Hasan",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  },
+  {
+    "name": "Syed Jamiul Alam",
+    "email": null,
+    "designation": "Lecturer",
+    "department": "Computer Science and Engineering",
+    "courses": []
+  }
+]

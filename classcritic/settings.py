@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-n5f=)hsm0sychx5f3&cv_1(03ah@yo3-5(%yvata(97npdp8%)')
+SECRET_KEY = config(
+    'SECRET_KEY', default='django-insecure-n5f=)hsm0sychx5f3&cv_1(03ah@yo3-5(%yvata(97npdp8%)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*",]
 
 
 # Application definition
@@ -142,4 +143,5 @@ else:
     # Console backend for development/testing
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='noreply@classcritic.com')
+DEFAULT_FROM_EMAIL = config(
+    'DEFAULT_FROM_EMAIL', default='noreply@classcritic.com')

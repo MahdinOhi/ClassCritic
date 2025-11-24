@@ -186,11 +186,9 @@ def submit_review(request):
             if selected_faculty:
                 review.faculty = selected_faculty
             
-            # Set student (or null if anonymous)
-            if not review.is_anonymous:
-                review.student = student
-            else:
-                review.student = None
+            # Always set student reference (even for anonymous reviews)
+            # The is_anonymous flag controls display, not data storage
+            review.student = student
             
             # Convert tags list to JSON
             tags = form.cleaned_data.get('tags', [])

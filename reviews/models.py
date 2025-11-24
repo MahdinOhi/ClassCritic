@@ -135,7 +135,7 @@ class Review(models.Model):
         null=True,
         blank=True,
         related_name='reviews',
-        help_text='Null if review is anonymous'
+        help_text='Student who submitted the review (stored even for anonymous reviews)'
     )
     question = models.ForeignKey(
         Question,
@@ -163,7 +163,11 @@ class Review(models.Model):
         ordering = ['-created_at']
     
     def __str__(self):
-        student_name = 'Anonymous' if self.is_anonymous else (self.student.name if self.student else 'Unknown')
+        # Display as anonymous on public site, but student is always stored for admin
+        if self.is_anonymous:
+            student_name = 'Anonymous'
+        else:
+            student_name = self.student.name if self.student else 'Unknown'
         return f"Review by {student_name} for {self.faculty.name}"
     
     def clean(self):

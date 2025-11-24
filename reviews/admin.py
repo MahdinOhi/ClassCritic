@@ -45,10 +45,14 @@ class ReviewAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
     
     def get_student_name(self, obj):
-        if obj.is_anonymous:
-            return 'Anonymous'
-        return obj.student.name if obj.student else 'Unknown'
-    get_student_name.short_description = 'Student'
+        """Always show actual student name in admin, even for anonymous reviews"""
+        if obj.student:
+            # Show student name with (Anonymous) indicator if review is anonymous
+            if obj.is_anonymous:
+                return f'{obj.student.name} (Anonymous)'
+            return obj.student.name
+        return 'Unknown'
+    get_student_name.short_description = 'Student (Actual Name)'
     
     def has_add_permission(self, request):
         # Reviews should be added through the frontend
