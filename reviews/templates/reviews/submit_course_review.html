@@ -1,0 +1,101 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Submit Course Review - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin-top: 2rem;">
+    <div class="card fade-in">
+        <h2 style="text-align: center; margin-bottom: 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Submit Course Review
+        </h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% if selected_course %}
+            <!-- Hidden field to pass course_id in POST -->
+            <input type="hidden" name="course_id" value="{{ selected_course.id }}">
+            {% endif %}
+            
+            {% if selected_course %}
+            <!-- Course is pre-selected from course detail page -->
+            <div class="form-group">
+                <label class="form-label">Reviewing Course</label>
+                <div style="padding: 0.75rem 1rem; background: var(--bg-secondary); border: 1px solid var(--primary); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 1rem;">
+                    <strong>{{ selected_course.code }}</strong>
+                    <span style="color: var(--text-muted); margin-left: 0.5rem;">{{ selected_course.name }}</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">
+                    ✓ Course automatically selected
+                </p>
+            </div>
+            {% else %}
+            <!-- Manual course selection -->
+            <div class="form-group">
+                <label class="form-label">Select Course *</label>
+                {{ form.course }}
+                {% if form.course.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.course.errors.0 }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label class="form-label">Select Question (Optional)</label>
+                {{ form.question }}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Review Description *</label>
+                {{ form.description }}
+                {% if form.description.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.description.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Rating Points (0-10) *</label>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    {{ form.points }}
+                    <span id="course-points-display" style="font-size: 1.5rem; font-weight: 700; color: var(--primary); min-width: 50px;">5</span>
+                </div>
+                {% if form.points.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.points.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Tags (Optional)</label>
+                {{ form.tags }}
+                {% if form.tags.errors %}
+                <p style="color: var(--danger); font-size: 0.85rem; margin-top: 0.25rem;">{{ form.tags.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    {{ form.is_anonymous }}
+                    <span class="form-label" style="margin: 0;">Submit as Anonymous</span>
+                </label>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">
+                    Your identity will not be shown with this review
+                </p>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                Submit Review
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Initialize points display
+    document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.getElementById('course-points-slider');
+        if (slider) {
+            document.getElementById('course-points-display').textContent = slider.value || '5';
+        }
+    });
+</script>
+{% endblock %}

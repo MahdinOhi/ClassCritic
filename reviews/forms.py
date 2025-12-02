@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Student, Review, validate_student_email
+from .models import Student, Review, CourseReview, validate_student_email
 
 
 class StudentRegistrationForm(forms.Form):
@@ -75,6 +75,57 @@ class ReviewForm(forms.ModelForm):
         
         # Convert tags to choices for checkbox
         tag_choices = [(tag[0], tag[0]) for tag in Review.TAG_CHOICES]
+        self.fields['tags'] = forms.MultipleChoiceField(
+            choices=tag_choices,
+            widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-checkbox-group'}),
+            required=False
+        )
+    
+    def clean_description(self):
+        description = self.cleaned_data.get('description')
+        # No minimum word count requirement
+        return description
+    
+    def clean_points(self):
+        points = self.cleaned_data.get('points')
+        if points is not None and (points < 0 or points > 10):
+            raise ValidationError('Points must be between 0 and 10.')
+        return points
+
+
+class CourseReviewForm(forms.ModelForm):
+    """Form for submitting course reviews"""
+    
+    class Meta:
+        model = CourseReview
+        fields = ['course', 'question', 'description', 'points', 'tags', 'is_anonymous']
+        widgets = {
+            'course': forms.Select(attrs={'class': 'form-select'}),
+            'question': forms.Select(attrs={'class': 'form-select'}),
+            'description': forms.Textarea(attrs={
+                'class': 'form-textarea',
+                'placeholder': 'Write your review about the course',
+                'rows': 6,
+                'id': 'course-review-description'
+            }),
+            'points': forms.NumberInput(attrs={
+                'class': 'form-range',
+                'min': '0',
+                'max': '10',
+                'type': 'range',
+                'id': 'course-points-slider'
+            }),
+            'tags': forms.CheckboxSelectMultiple(),
+            'is_anonymous': forms.CheckboxInput(attrs={'class': 'form-checkbox'}),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['question'].required = False
+        self.fields['tags'].required = False
+        
+        # Convert tags to choices for checkbox
+        tag_choices = [(tag[0], tag[0]) for tag in CourseReview.TAG_CHOICES]
         self.fields['tags'] = forms.MultipleChoiceField(
             choices=tag_choices,
             widget=forms.CheckboxSelectMultiple(attrs={'class': 'form-checkbox-group'}),

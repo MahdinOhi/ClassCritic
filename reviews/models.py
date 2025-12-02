@@ -42,6 +42,17 @@ class Course(models.Model):
     
     def __str__(self):
         return f"{self.code} - {self.name}"
+    
+    def average_rating(self):
+        """Calculate average rating from all course reviews"""
+        reviews = self.course_reviews.all()
+        if reviews.exists():
+            return round(sum(r.points for r in reviews) / reviews.count(), 2)
+        return 0
+    
+    def total_reviews(self):
+        """Get total number of course reviews"""
+        return self.course_reviews.count()
 
 
 class Faculty(models.Model):
@@ -169,6 +180,80 @@ class Review(models.Model):
         else:
             student_name = self.student.name if self.student else 'Unknown'
         return f"Review by {student_name} for {self.faculty.name}"
+    
+    def clean(self):
+        """Validate tags are from allowed choices"""
+        if self.tags:
+            allowed_tags = [tag[0] for tag in self.TAG_CHOICES]
+            for tag in self.tags:
+                if tag not in allowed_tags:
+                    raise ValidationError(f"Invalid tag: {tag}. Allowed tags: {', '.join(allowed_tags)}")
+    
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+
+class CourseReview(models.Model):
+    """CourseReview model - represents student reviews of courses"""
+    
+    TAG_CHOICES = [
+        ('Good', 'Good'),
+        ('Better', 'Better'),
+        ('Best', 'Best'),
+        ('Worst', 'Worst'),
+        ('Nice', 'Nice'),
+        ('Easy', 'Easy'),
+        ('Difficult', 'Difficult'),
+        ('Interesting', 'Interesting'),
+        ('Useful', 'Useful'),
+    ]
+    
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        related_name='course_reviews'
+    )
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='course_reviews',
+        help_text='Student who submitted the review (stored even for anonymous reviews)'
+    )
+    question = models.ForeignKey(
+        Question,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='course_reviews'
+    )
+    description = models.TextField(
+        help_text='Write your review about the course'
+    )
+    points = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(10)],
+        help_text='Rating from 0 to 10'
+    )
+    tags = models.JSONField(
+        default=list,
+        blank=True,
+        help_text='Select from predefined tags'
+    )
+    is_anonymous = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        # Display as anonymous on public site, but student is always stored for admin
+        if self.is_anonymous:
+            student_name = 'Anonymous'
+        else:
+            student_name = self.student.name if self.student else 'Unknown'
+        return f"Review by {student_name} for {self.course.code}"
     
     def clean(self):
         """Validate tags are from allowed choices"""

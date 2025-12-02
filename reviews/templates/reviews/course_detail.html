@@ -1,0 +1,102 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}{{ course.code }} - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 2rem;">
+    <!-- Course Header -->
+    <div class="card fade-in" style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">{{ course.code }}</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">{{ course.name }}</p>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    🏛️ {{ course.department.name }}
+                </p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div class="rating-value" style="font-size: 3rem;">{{ avg_rating }}</div>
+                <div style="color: var(--text-muted);">/ 10</div>
+                <div style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    {{ total_reviews }} review{{ total_reviews|pluralize }}
+                </div>
+            </div>
+        </div>
+        
+        {% if request.session.verified_student_id %}
+        <a href="{% url 'submit_course_review' %}?course_id={{ course.id }}" class="btn btn-primary" style="margin-top: 1.5rem;">
+            ✍️ Write a Review
+        </a>
+        {% else %}
+        <a href="{% url 'register' %}" class="btn btn-primary" style="margin-top: 1.5rem;">
+            Login to Write a Review
+        </a>
+        {% endif %}
+    </div>
+    
+    <!-- Tag Filter -->
+    {% if reviews %}
+    <div style="margin-bottom: 1.5rem;">
+        <strong style="color: var(--text-secondary);">Filter by tag:</strong>
+        <div class="tags" style="margin-top: 0.5rem;">
+            <a href="{% url 'course_detail' course.id %}" class="tag" style="text-decoration: none; {% if not tag_filter %}background: var(--primary); color: white;{% endif %}">
+                All
+            </a>
+            {% for tag in available_tags %}
+            <a href="?tag={{ tag }}" class="tag tag-{{ tag|lower|cut:' ' }}" style="text-decoration: none; {% if tag_filter == tag %}opacity: 1; font-weight: 600;{% else %}opacity: 0.7;{% endif %}">
+                {{ tag }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Reviews List -->
+    <h2 style="margin-bottom: 1.5rem; color: var(--text-primary);">Student Reviews</h2>
+    
+    <div class="review-list">
+        {% for review in reviews %}
+        <div class="review-item fade-in">
+            <div class="review-header">
+                <div>
+                    <span class="review-author">
+                        {% if review.is_anonymous %}
+                        🕶️ Anonymous Student
+                        {% else %}
+                        {{ review.student.name }}
+                        {% endif %}
+                    </span>
+                    <span class="review-date" style="margin-left: 1rem;">
+                        {{ review.created_at|date:"M d, Y" }}
+                    </span>
+                </div>
+                <div class="review-points">{{ review.points }}/10</div>
+            </div>
+            
+            {% if review.question %}
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; font-style: italic;">
+                Q: {{ review.question.text }}
+            </p>
+            {% endif %}
+            
+            <p class="review-description">{{ review.description }}</p>
+            
+            {% if review.tags %}
+            <div class="tags">
+                {% for tag in review.tags %}
+                <span class="tag tag-{{ tag|lower|cut:' ' }}">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% empty %}
+        <div style="text-align: center; padding: 3rem; background: var(--glass-bg); border-radius: var(--radius-md);">
+            <p style="color: var(--text-muted); font-size: 1.1rem;">
+                No reviews yet. Be the first to review this course!
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

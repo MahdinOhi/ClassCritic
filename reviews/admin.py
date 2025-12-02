@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Department, Course, Faculty, Student, Question, Review
+from .models import Department, Course, Faculty, Student, Question, Review, CourseReview
 
 
 @admin.register(Department)
@@ -61,3 +61,30 @@ class ReviewAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         # Reviews should not be edited
         return False
+
+
+@admin.register(CourseReview)
+class CourseReviewAdmin(admin.ModelAdmin):
+    list_display = ['course', 'get_student_name', 'points', 'is_anonymous', 'created_at']
+    list_filter = ['is_anonymous', 'points', 'created_at', 'course__department']
+    search_fields = ['course__code', 'course__name', 'student__name', 'description']
+    readonly_fields = ['created_at']
+    
+    def get_student_name(self, obj):
+        """Always show actual student name in admin, even for anonymous reviews"""
+        if obj.student:
+            # Show student name with (Anonymous) indicator if review is anonymous
+            if obj.is_anonymous:
+                return f'{obj.student.name} (Anonymous)'
+            return obj.student.name
+        return 'Unknown'
+    get_student_name.short_description = 'Student (Actual Name)'
+    
+    def has_add_permission(self, request):
+        # Reviews should be added through the frontend
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        # Reviews should not be edited
+        return False
+

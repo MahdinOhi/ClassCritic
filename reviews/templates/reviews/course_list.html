@@ -1,0 +1,78 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Courses - ClassCritic{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="hero fade-in">
+        <h1>Course Reviews</h1>
+        <p>Discover course reviews from real students. Make informed decisions about your academic journey.</p>
+        
+        <!-- Search and Filter Form -->
+        <div class="search-bar">
+            <form method="GET" action="{% url 'course_list' %}" id="searchForm">
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center;">
+                    <input 
+                        type="text" 
+                        name="search" 
+                        class="search-input" 
+                        placeholder="Search courses by name or code..."
+                        value="{{ search_query }}"
+                        style="flex: 1; min-width: 300px;"
+                    >
+                    <select 
+                        name="department" 
+                        class="form-select" 
+                        onchange="this.form.submit()" 
+                        style="width: auto; min-width: 200px;"
+                    >
+                        <option value="">All Departments</option>
+                        {% for dept in departments %}
+                        <option value="{{ dept.id }}" {% if department_filter == dept.id|stringformat:"s" %}selected{% endif %}>
+                            {{ dept.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    {% if search_query or department_filter %}
+                    <a href="{% url 'course_list' %}" class="btn btn-secondary" style="white-space: nowrap;">
+                        Clear Filters
+                    </a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Course Grid -->
+    <div class="faculty-grid">
+        {% for item in course_list %}
+        <div class="card faculty-card fade-in">
+            <h3 class="faculty-name">{{ item.course.code }}</h3>
+            <p class="faculty-designation">{{ item.course.name }}</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                {{ item.course.department.name }}
+            </p>
+            
+            <div class="rating">
+                <span class="rating-value">{{ item.avg_rating }}</span>
+                <span class="rating-max">/ 10</span>
+                <span style="color: var(--text-muted); margin-left: auto;">
+                    {{ item.total_reviews }} review{{ item.total_reviews|pluralize }}
+                </span>
+            </div>
+            
+            <a href="{% url 'course_detail' item.course.id %}" class="btn btn-primary" style="margin-top: 1rem; width: 100%; text-align: center;">
+                View Reviews
+            </a>
+        </div>
+        {% empty %}
+        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+            <p style="color: var(--text-muted); font-size: 1.2rem;">
+                No courses found. {% if search_query %}Try a different search.{% endif %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
