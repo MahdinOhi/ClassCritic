@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Exile&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 /* ClassCritic - Modern Premium Styling */
 
 :root {
@@ -9,7 +10,7 @@
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
-    
+
     /* Dark Theme */
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
@@ -17,23 +18,23 @@
     --text-primary: #f1f5f9;
     --text-secondary: #cbd5e1;
     --text-muted: #94a3b8;
-    
+
     /* Glassmorphism */
     --glass-bg: rgba(30, 41, 59, 0.7);
     --glass-border: rgba(148, 163, 184, 0.1);
-    
+
     /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
-    
+
     /* Border Radius */
     --radius-sm: 0.5rem;
     --radius-md: 1rem;
     --radius-lg: 1.5rem;
-    
+
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -48,8 +49,8 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    font-family: 'Zilla Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #161718 50%, #08090a 100%);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
@@ -64,7 +65,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
+    background:
         radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
     pointer-events: none;
@@ -96,9 +97,10 @@ nav {
 }
 
 .logo {
+    font-family: "Exile";
     font-size: 1.75rem;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -111,7 +113,7 @@ nav {
 }
 
 .nav-links a {
-    color: var(--text-secondary);
+    color: rgb(68, 71, 200);
     text-decoration: none;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-sm);
@@ -136,8 +138,8 @@ nav {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
+    background: white;
+    color: black;
     box-shadow: var(--shadow-md);
 }
 
@@ -167,7 +169,7 @@ nav {
 }
 
 .card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-15px);
     box-shadow: var(--shadow-lg);
     border-color: rgba(99, 102, 241, 0.3);
 }
@@ -313,12 +315,35 @@ nav {
     color: var(--text-secondary);
 }
 
-.tag-good { background: rgba(16, 185, 129, 0.2); color: var(--success); }
-.tag-better { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
-.tag-best { background: rgba(99, 102, 241, 0.2); color: var(--primary); }
-.tag-worst { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
-.tag-nice { background: rgba(236, 72, 153, 0.2); color: var(--secondary); }
-.tag-student-friendly { background: rgba(139, 92, 246, 0.2); color: var(--accent); }
+.tag-good {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success);
+}
+
+.tag-better {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.tag-best {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--primary);
+}
+
+.tag-worst {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger);
+}
+
+.tag-nice {
+    background: rgba(236, 72, 153, 0.2);
+    color: var(--secondary);
+}
+
+.tag-student-friendly {
+    background: rgba(139, 92, 246, 0.2);
+    color: var(--accent);
+}
 
 /* Reviews */
 .review-list {
@@ -375,7 +400,7 @@ nav {
 .hero h1 {
     font-size: 3.5rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: whitesmoke;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -473,11 +498,11 @@ nav {
     .hero h1 {
         font-size: 2.5rem;
     }
-    
+
     .faculty-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .nav-content {
         flex-direction: column;
         gap: var(--spacing-md);
@@ -490,6 +515,7 @@ nav {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -512,6 +538,11 @@ nav {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

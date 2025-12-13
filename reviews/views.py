@@ -72,7 +72,22 @@ def student_register(request):
                 messages.success(request, f'OTP has been sent to {email}. Please check your email.')
                 return redirect('verify_otp')
             else:
-                messages.error(request, 'Failed to send OTP. Please try again.')
+                # Check email backend configuration to provide helpful error message
+                from django.conf import settings
+                email_backend = getattr(settings, 'EMAIL_BACKEND', '')
+                
+                if 'console' in email_backend.lower():
+                    messages.error(
+                        request, 
+                        'Email backend is set to console mode. OTP was printed to server console instead of being sent. '
+                        'Please configure SMTP email settings in your .env file. See GMAIL_SETUP.md for instructions.'
+                    )
+                else:
+                    messages.error(
+                        request, 
+                        'Failed to send OTP email. Please check your email configuration. '
+                        'See GMAIL_SETUP.md for setup instructions or check server logs for details.'
+                    )
     else:
         form = StudentRegistrationForm()
     
@@ -401,4 +416,3 @@ def submit_course_review(request):
         'selected_course': selected_course,  # Pass to template to hide course field
     }
     return render(request, 'reviews/submit_course_review.html', context)
-
