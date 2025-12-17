@@ -7,24 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / ".env")
 
-
-
-
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
-
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS") == "True"
-
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
-
-# ---#
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -149,6 +132,16 @@ if email_backend_type == 'smtp':
     EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
     EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+    
+    # Validate SMTP configuration
+    if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.warning(
+            'EMAIL_BACKEND is set to smtp but EMAIL_HOST_USER or EMAIL_HOST_PASSWORD is missing. '
+            'Falling back to console backend. Please configure SMTP settings in .env file.'
+        )
+        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     # Console backend for development/testing
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
