@@ -62,6 +62,9 @@ if 'smtp' in settings.EMAIL_BACKEND.lower():
     print("\nTesting Email Send...")
     print("   Enter a test email address (or press Enter to skip):")
     test_email = input("   > ").strip()
+    if not test_email and settings.EMAIL_HOST_USER:
+        print(f"   No email entered. Defaulting to EMAIL_HOST_USER: {settings.EMAIL_HOST_USER}")
+        test_email = settings.EMAIL_HOST_USER
     
     if test_email:
         try:

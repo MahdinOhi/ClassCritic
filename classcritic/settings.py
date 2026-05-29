@@ -123,15 +123,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Set EMAIL_BACKEND=smtp in .env to use Gmail SMTP
 # Set EMAIL_BACKEND=console in .env to print emails in console (for testing)
 
-email_backend_type = config('EMAIL_BACKEND', default='console')
+email_backend_type = config('EMAIL_BACKEND', default='console').strip()
 
 if email_backend_type == 'smtp':
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com')
+    EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com').strip()
     EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
     EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
-    EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='').strip()
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='').strip()
     
     # Validate SMTP configuration
     if not EMAIL_HOST_USER or not EMAIL_HOST_PASSWORD:
